@@ -154,6 +154,36 @@ change root
 arch-chroot /mnt
 ```
 
+## Rest of config
+Execute base-install.sh script
+```
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+hwclock --systohc
+vim /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+echo "devstation" >> /etc/hostname
+nvim /etc/hosts
+```
+change these, stolen
+
+```
+nvim /etc/mkinitcpio.conf
+```
+then
+```
+mkinitcpio -p linux
+```
+
+## Install and configure grub
+```
+grub-install ...
+```
+Edit /etc/default/grub
+```
+```
+
 
 you actually dont need ntfs-3g there is a faster kernel level driver since linux 5.15 just do mount -t ntfs3 /dev/*drive* /*mntpoint*
 You don't have to install dhcpcd if you are going to install NetworkManager, they both achieve the same purpose(NetworkManager has a built-in dhcp client). These are useful:
@@ -189,6 +219,10 @@ Resume good for hibernate
 /etc/default/grub
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=<insert-UUID>:cryptlvm root=/dev/mapper/arch-btrfs drm.edid_firmware=edid/edid.bin amdgpu.freesync_video=1"
+```
+make grub config
+```
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ## Ctr2caps
