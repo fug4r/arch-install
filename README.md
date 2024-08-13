@@ -45,18 +45,126 @@ n
 +1G
 ef00
 ```
-LVM Partition
+LUKS Partition
 ```
 n
 ↵
 ↵
 ↵
-8e00
+8309
 ```
 Write and quit gdisk
 ```
 w
 y
+```
+## Encrypt
+Encrypt partition
+```
+cryptsetup luksFormat -v -s 512 -h sha512 /dev/nvme0n1p2
+YES
+<insert passwd>
+```
+luksFormat options good?
+
+Open partition
+```
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+```
+## Setup LVM
+```
+pvcreate /dev/mapper/cryptlvm
+vgcreate arch /dev/mapper/cryptlvm
+lvcreate -n swap  -L 20G -C y arch
+lvcreate -n btrfs -l 100%FREE arch
+```
+Should i keep -C option?
+
+## Format partitions
+```
+mkfs.fat -F32 /dev/nvme0n1p1
+mkswap /dev/mapper/arch-swap
+mkfs.btrfs /dev/mapper/arch-btrfs
+```
+should i specify btrfs and maybe swap labels with -L ... ?
+
+# Mounting
+Enable swap and mark as available
+```
+swapon /dev/mapper/arch-swap
+swapon -a
+```
+Second command useful?
+
+create btrfs subvolumes
+```
+mount /dev/mapper/arch-btrfs /mnt
+cd /mnt
+
+btrfs subvolume create @
+btrfs subvolume create @home
+btrfs subvolume create @snapshots
+btrfs subvolume create @log
+btrfs subvolume create @cache
+btrfs subvolume create @tmp
+
+cd ..
+umount /mnt
+```
+
+mount btrfs subvolumes and BOOT partition
+```
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper/arch-btrfs /mnt
+
+mkdir /mnt/home
+mkdir /mnt/.snapshots
+mkdir /mnt/var
+mkdir /mnt/var/log
+mkdir /mnt/var/cache
+mkdir /mnt/var/tmp
+
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/mapper/arch-btrfs /mnt/home
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@snapshots /dev/mapper/arch-btrfs /mnt/.snapshots
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@log /dev/mapper/arch-btrfs /mnt/var/log
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@cache /dev/mapper/arch-btrfs /mnt/var/cache
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@tmp /dev/mapper/arch-btrfs /mnt/var/tmp
+```
+are these mount options good?
+
+Mount boot partition
+```
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+```
+
+Command lsblk should now look like exambple
+
+## Installing the system
+```
+pacstrap -K /mnt base base-devel linux linux-firmware linux-headers lvm2 btrfs-progs amd-ucode neovim
+```
+generate fstab
+```
+genfstab -U -p /mnt >> /mnt/etc/fstab
+```
+-U -p -L ?
+
+change root
+```
+arch-chroot /mnt
+```
+
+
+you actually dont need ntfs-3g there is a faster kernel level driver since linux 5.15 just do mount -t ntfs3 /dev/*drive* /*mntpoint*
+You don't have to install dhcpcd if you are going to install NetworkManager, they both achieve the same purpose(NetworkManager has a built-in dhcp client). These are useful:
+```
+-gvfs: to mount USB, Micro SD and other disk partitions.
+-gvfs-mtp: to mount an android device.
+-xdg-user-dirs: to create the user's default folders automatically.
+
+-> e2fsprogs - utilities for the ext4 filesystem
+-> iwd and crda - to connect to wifi, crda is needed to change the REGDOM for my wifi adapter(basically the region) or i will have trouble when connecting to some channels
+-> man-db man-pages texinfo - these are needed for man pages to work in the terminal
 ```
 
 Special setup:
