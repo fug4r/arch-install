@@ -177,13 +177,50 @@ mkinitcpio -p linux
 ```
 
 ## Install and configure grub
+
+
 ```
-grub-install ...
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 ```
+change the directory to /boot/efi is you mounted the EFI partition at /boot/efi
+
+
 Edit /etc/default/grub
 ```
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=<insert-UUID>:cryptlvm root=/dev/mapper/arch-btrfs drm.edid_firmware=edid/edid.bin amdgpu.freesync_video=1"
+GRUB_DISABLE_OS_PROBER=false
+```
+You can omit the second line if you don't plan on installing os-prober.
+
+Now you have to generate the grub config
+```
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+## Create and configure your user
+
+Replace <user> by the name you wish to assign your user
+```
+useradd -mG wheel libvirt <user>
+passwd <user>
+```
+
+Edit the sudoers file
+```
+EDITOR=nvim visudo
+```
+Uncomment the line that gives anyone in the wheel group sudo permission (with password)
+```
+%wheel ALL=(ALL:ALL) ALL
+```
+
+## Finish and reboot
+```
+exit
+umount -R /mnt
+poweroff
+```
+Unplug your usb and turn on your computer
 
 you actually dont need ntfs-3g there is a faster kernel level driver since linux 5.15 just do mount -t ntfs3 /dev/*drive* /*mntpoint*
 You don't have to install dhcpcd if you are going to install NetworkManager, they both achieve the same purpose(NetworkManager has a built-in dhcp client). These are useful:
