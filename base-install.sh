@@ -2,6 +2,9 @@
 
 # Taken from https://gitlab.com/eflinux/arch-basic/-/blob/master/base-uefi.sh?ref_type=heads, to modify
 
+echo -n "Enter your localtime region" 
+read region
+
 ln -sf /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 hwclock --systohc
 sed -i '178s/.//' /etc/locale.gen
@@ -37,12 +40,3 @@ systemctl enable fstrim.timer
 systemctl enable libvirtd
 systemctl enable firewalld
 systemctl enable acpid
-
-useradd -m ermanno
-echo ermanno:password | chpasswd
-usermod -aG libvirt ermanno
-
-echo "ermanno ALL=(ALL) ALL" >> /etc/sudoers.d/ermanno
-
-
-printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
