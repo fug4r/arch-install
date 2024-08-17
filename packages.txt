@@ -192,7 +192,6 @@ ttf-opensans
 
 # HP Printer
 hplip
-python-pyqt5
 python-reportlab
 xsane
 cups
@@ -201,10 +200,6 @@ cups-filters
 cups-pdf
 
 # Printer
-cups
-cups-browsed
-cups-filters
-cups-pdf
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
