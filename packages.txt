@@ -131,31 +131,12 @@ acpi
 ntp
 
 # Network
-bind
-dnsmasq
-ethtool
-iwd
-modemmanager
-nbd
-ndisc6
-net-tools
-netctl
 networkmanager
-networkmanager-openconnect
-networkmanager-openvpn
-nss-mdns
-openconnect
-openvpn
-openssh
-ppp
-pptpclient
 rp-pppoe
-usb_modeswitch
-vpnc
-whois
-wireless-regdb
+modemmanager
 wpa_supplicant
-xl2tpd
+iwd
+openssh
 
 # Bluetooth
 bluez
