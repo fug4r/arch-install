@@ -1,41 +1,50 @@
 # BASE
 
 ## Base system
-iptables-nft
 base
 base-devel
-archlinux-keyring
-cryptsetup
-device-mapper
-diffutils
-edk2-shell
-inetutils
-less
 linux
 linux-firmware
 linux-firmware-marvell
 linux-headers
+archlinux-keyring
+cryptsetup
+device-mapper
+mdadm
+iptables-nft
+inetutils
 logrotate
+edk2-shell
 lsb-release
+which
+s-nail
+
+## Core utilities
+coreutils
+tar
+less
+findutils
+diffutils
+grep
+sed
+gawk
+util-linux
+procps-ng
+
+## Docs
 man-db
 man-pages
-mdadm
-perl
-s-nail
-sudo
-sysfsutils
-systemd-sysvcompat
 texinfo
-which
+tealdeer
+
+# Programming languages
+perl
+python
+rustup
 
 ffmpegthumbnailer
-findutils
-hdparm
-sdparm
 pv
-python
 python-defusedxml
-sed
 upower
 
 ## Filesystem
@@ -45,6 +54,7 @@ e2fsprogs
 exfatprogs
 f2fs-tools
 jfsutils
+sysfsutils
 lvm2
 mtools
 nfs-utils
@@ -63,7 +73,6 @@ os-prober
 
 ## CPU
 amd-ucode
-intel-ucode
 
 ## GPU
 mesa
@@ -72,26 +81,25 @@ nvidia
 nvidia-utils
 nvidia-settings
 
-## Network hardware
-b43-fwcutter
-broadcom-wl-dkms
-
-## General hardware
+## Disk/USB
+hdparm
+sdparm
 lsscsi
 sg3_utils
 smartmontools
 usbutils
 
-## Audio hardware
+## Audio
 alsa-firmware
 alsa-plugins
 alsa-utils
 gst-libav
-gst-plugin-pipewire
+gst-plugins-base
+gst-plugins-good
 gst-plugins-bad
 gst-plugins-ugly
+gst-plugin-pipewire
 libdvdcss
-pavucontrol
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
@@ -185,21 +193,22 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-cjk
 noto-fonts-extra
-ttf-bitstream-vera
 ttf-dejavu
 ttf-liberation
 ttf-opensans
+ttf-nerd-fonts-symbols
+ttf-jetbrains-mono-nerd
 
-# HP Printer
-hplip
-python-reportlab
-xsane
+# Printer
 cups
 cups-browsed
 cups-filters
 cups-pdf
-
-# Printer
+hplip
+sane
+sane-airscan
+ipp-usb
+python-reportlab
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
