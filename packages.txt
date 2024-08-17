@@ -1,6 +1,6 @@
-# BASE
+#################### BASE
 
-## Base system
+# Base system
 base
 base-devel
 linux
@@ -10,6 +10,7 @@ linux-headers
 archlinux-keyring
 cryptsetup
 device-mapper
+dmraid
 mdadm
 iptables-nft
 inetutils
@@ -19,7 +20,7 @@ lsb-release
 which
 s-nail
 
-## Core utilities
+# Core utilities
 coreutils
 tar
 less
@@ -31,7 +32,7 @@ gawk
 util-linux
 procps-ng
 
-## Docs
+# Docs
 man-db
 man-pages
 texinfo
@@ -40,14 +41,10 @@ tealdeer
 # Programming languages
 perl
 python
+python-packaging
 rustup
 
-ffmpegthumbnailer
-pv
-python-defusedxml
-upower
-
-## Filesystem
+# Filesystem
 btrfs-progs
 dosfstools
 e2fsprogs
@@ -69,19 +66,19 @@ efibootmgr
 efitools
 os-prober
 
-# HARDWARE
+#################### HARDWARE
 
-## CPU
+# CPU
 amd-ucode
 
-## GPU
+# GPU
 mesa
 mesa-utils
 nvidia
 nvidia-utils
 nvidia-settings
 
-## Disk/USB
+# Disk/USB
 hdparm
 sdparm
 lsscsi
@@ -89,7 +86,7 @@ sg3_utils
 smartmontools
 usbutils
 
-## Audio
+# Audio
 alsa-firmware
 alsa-plugins
 alsa-utils
@@ -107,28 +104,11 @@ rtkit
 sof-firmware
 wireplumber
 
-# SOFTWARE
+#################### SOFTWARE
 
-## General system
-bash-completion
-dmidecode
-dialog
-dmraid
-downgrade
-duf
-fakeroot
-freetype2
+# General
 git
-glances
-python-packaging
-gpm
 gptfdisk
-haveged
-hwdetect
-hwinfo
-inxi
-libgsf
-libopenraw
 mlocate
 ntp
 pacman-contrib
@@ -150,8 +130,12 @@ jq
 sysstat
 unzip
 zip
+ffmpegthumbnailer
+pv
+python-defusedxml
+upower
 
-## Network
+# Network
 bind
 dnsmasq
 ethtool
@@ -178,16 +162,16 @@ wireless-regdb
 wpa_supplicant
 xl2tpd
 
-## Bluetooth
+# Bluetooth
 bluez
 bluez-utils
 
-## Firewall
+# Firewall
 firewalld
 python-pyqt5
 python-capng
 
-## Fonts
+# Fonts
 cantarell-fonts
 noto-fonts
 noto-fonts-emoji
