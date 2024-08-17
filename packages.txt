@@ -108,32 +108,27 @@ wireplumber
 
 # General
 git
-gptfdisk
-mlocate
-ntp
 pacman-contrib
 pkgfile
 reflector
-rsync
-unrar
 wget
+curl
+mlocate
+gptfdisk
 xdg-user-dirs
-xz
-acpi
+ffmpegthumbnailer
 gvfs
 gvfs-afc
 gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs
 gvfs-smb
-jq
-sysstat
+xz
 unzip
 zip
-ffmpegthumbnailer
-pv
-python-defusedxml
-upower
+unrar
+acpi
+ntp
 
 # Network
 bind
