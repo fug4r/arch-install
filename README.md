@@ -1,6 +1,24 @@
 # Disk encryption on Arch Linux with LVM,LUKS,BTRFS and SWAP Hibernate
 
-Warning! this for amd cpu and nvidia gpu, if your hardware is differenct you will have to install different drivers. Also do not install both amd and intel microcode at the same time.
+Warning! this for amd cpu and nvidia gpu, if your hardware is differenct you will have to install different drivers. Also do not install both amd and intel microcode at the same time. Automation script will setup with en_US.UTF-8 locale, and arch as hostname
+
+Before begin: 
+Internet connection:
+ehternet connection is plug and play
+
+unblock wlan
+```
+rfkill unblock wlan
+```
+To connect to wifi use iwctl, refer to [](https://wiki.archlinux.org/title/Iwd#iwctl).
+
+test your internet connection:
+```
+ping archlinux.org
+```
+Ctrl-C to stop pinging
+
+
 
 Encryption without /boot
 
@@ -37,10 +55,10 @@ Start disk utility with new GPT
 ```
 gdisk /dev/nvme0n1
 o
+y
 ```
 EFI Parition
 ```
-y
 n
 ↵
 ↵
@@ -136,7 +154,7 @@ are these mount options good?
 Mount boot partition
 ```
 mkdir /mnt/boot
-mount /dev/sda1 /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 Command lsblk should now look like exambple
@@ -157,15 +175,46 @@ arch-chroot /mnt
 ```
 
 ## Rest of config
-Execute base-install.sh script
+
+TIP: you can execute 
 ```
-ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+ls /usr/share/zoneinfo
+```
+to list regions, and
+```
+ls /usr/share/zoneinfo/<Region>
+```
+to list cities within a given region
+
+Set up system clock:
+```
+ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
 hwclock --systohc
-vim /etc/locale.gen
+```
+note, ntp will be configured by the automation script
+
+Generate locale
+```
+nvim /etc/locale.gen
+```
+Un
+
+generate locale
+```
 locale-gen
+```
+
+Automation script:
+```
+git clone https://github.com/fug4r/arch-install.git
+cd arch-install/
+base-install.sh
+```
+
+
+```
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
-echo "devstation" >> /etc/hostname
+echo "arch" >> /etc/hostname
 nvim /etc/hosts
 ```
 change these, stolen
