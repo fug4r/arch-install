@@ -46,19 +46,20 @@ rustup
 
 # Filesystem
 btrfs-progs
-dosfstools
 e2fsprogs
 exfatprogs
-f2fs-tools
-jfsutils
-sysfsutils
-lvm2
-mtools
-nfs-utils
-nilfs-utils
-ntfs-3g
 reiserfsprogs
 xfsprogs
+dosfstools
+mtools
+ntfs-3g
+sysfsutils
+f2fs-tools
+jfsutils
+lvm2
+nfs-utils
+nilfs-utils
+
 
 ## Boot
 grub
@@ -127,8 +128,9 @@ xz
 unzip
 zip
 unrar
-acpi
 ntp
+acpi
+acpid
 
 # Network
 networkmanager
@@ -136,6 +138,8 @@ rp-pppoe
 modemmanager
 wpa_supplicant
 iwd
+avahi
+nss-mdns
 openssh
 
 # Bluetooth
