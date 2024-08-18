@@ -224,17 +224,6 @@ poweroff
 ```
 Unplug your usb and turn on your computer
 
-you actually dont need ntfs-3g there is a faster kernel level driver since linux 5.15 just do mount -t ntfs3 /dev/*drive* /*mntpoint*
-You don't have to install dhcpcd if you are going to install NetworkManager, they both achieve the same purpose(NetworkManager has a built-in dhcp client). These are useful:
-```
--gvfs: to mount USB, Micro SD and other disk partitions.
--gvfs-mtp: to mount an android device.
--xdg-user-dirs: to create the user's default folders automatically.
-
--> e2fsprogs - utilities for the ext4 filesystem
--> iwd and crda - to connect to wifi, crda is needed to change the REGDOM for my wifi adapter(basically the region) or i will have trouble when connecting to some channels
--> man-db man-pages texinfo - these are needed for man pages to work in the terminal
-```
 
 Special setup:
 
