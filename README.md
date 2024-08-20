@@ -1,6 +1,8 @@
 # Disk encryption on Arch Linux with LVM,LUKS,BTRFS and SWAP Hibernate
 
 Warning! this for amd cpu and nvidia gpu, if your hardware is differenct you will have to install different drivers. Also do not install both amd and intel microcode at the same time. Automation script will setup with en_US.UTF-8 locale, and arch as hostname
+setfont ter-124b
+
 
 Before begin: 
 Internet connection:
