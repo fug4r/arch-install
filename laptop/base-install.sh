@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Installing packages
 echo "Installing packages..."
 pacman -S --needed $(grep -v '^#' packages.txt)
@@ -62,7 +63,7 @@ echo -e "\nCreating admin user..."
 read -p "Enter username: " username
 
 useradd -mG wheel $username
-echo -e "\nChanging $username password..."
+echo -e "Changing $username password..."
 passwd $username
 sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
 echo "Created user $username and configured sudoers file."

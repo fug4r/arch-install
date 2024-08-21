@@ -160,6 +160,7 @@ noto-fonts-extra
 ttf-dejavu
 ttf-liberation
 ttf-opensans
+terminus-font-ttf
 ttf-nerd-fonts-symbols
 ttf-jetbrains-mono-nerd
 
