@@ -30,6 +30,23 @@ echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
 echo "Locale and hostname configured."
 
 
+# Keymap
+echo -e "\nSetting console keymap and font..."
+cp us-caps2ctrl.map /usr/share/kbd/keymaps
+echo "KEYMAP=us-caps2ctrl" >> /etc/vconsole.conf
+echo "FONT=ter-124b" >> /etc/vconsole.conf
+echo "Keymap and font set."
+
+
+# PC Speaker
+echo -e "\nDisabling PC Speaker..."
+rmmod pcspkr
+rmmod snd_pcsp
+echo "blacklist pcspkr" >> /etc/modprobe.d/nobeep.conf
+echo "blacklist snd_pcsp" >> /etc/modprobe.d/nobeep.conf
+echo "Disabled PC Speaker..."
+
+
 # Initramfs & custom edid binary
 echo -e "\nConfiguring and generating initramfs..."
 mkdir -p /usr/lib/firmware/edid/ && cp ./edid.bin /usr/lib/firmware/edid/

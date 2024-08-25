@@ -77,6 +77,7 @@ mesa
 mesa-utils
 nvidia
 nvidia-utils
+lib32-nvidia-utils
 nvidia-settings
 
 # Disk/USB
@@ -185,3 +186,16 @@ gsfonts
 gutenprint
 splix
 system-config-printer
+
+
+#################### EXTRA
+
+# Desktop (hyprland)
+egl-wayland
+kitty
+sddm
+dunst
+xdg-desktop-portal-hyprland
+polkit-kde-agent
+qt5-wayland
+qt6-walyand
