@@ -29,16 +29,12 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
 echo "Locale and hostname configured."
 
-
-# Keymap
 echo -e "\nSetting console keymap and font..."
 cp us-caps2ctrl.map /usr/share/kbd/keymaps
 echo "KEYMAP=us-caps2ctrl" >> /etc/vconsole.conf
 echo "FONT=ter-124b" >> /etc/vconsole.conf
 echo "Keymap and font set."
 
-
-# PC Speaker
 echo -e "\nDisabling PC Speaker..."
 rmmod pcspkr
 rmmod snd_pcsp
