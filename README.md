@@ -188,120 +188,12 @@ ls /usr/share/zoneinfo/<Region>
 ```
 to list cities within a given region
 
-Set up system clock:
-```
-ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
-hwclock --systohc
-```
-note, ntp will be configured by the automation script
+Execute relevant install script to finish install
 
-Generate locale
-```
-nvim /etc/locale.gen
-```
-Un
-
-generate locale
-```
-locale-gen
-```
-
-Automation script:
-```
-git clone https://github.com/fug4r/arch-install.git
-cd arch-install/
-base-install.sh
-```
-
-
-```
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "arch" >> /etc/hostname
-nvim /etc/hosts
-```
-change these, stolen
-
-```
-nvim /etc/mkinitcpio.conf
-```
-then
-```
-mkinitcpio -p linux
-```
-
-## Install and configure grub
-
-
-```
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-```
-change the directory to /boot/efi is you mounted the EFI partition at /boot/efi
-
-
-Edit /etc/default/grub
-```
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=<insert-UUID>:cryptlvm root=/dev/mapper/arch-btrfs drm.edid_firmware=edid/edid.bin amdgpu.freesync_video=1"
-GRUB_DISABLE_OS_PROBER=false
-```
-You can omit the second line if you don't plan on installing os-prober.
-
-Now you have to generate the grub config
-```
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-## Create and configure your user
-
-Replace <user> by the name you wish to assign your user
-```
-useradd -mG wheel libvirt <user>
-passwd <user>
-```
-
-Edit the sudoers file
-```
-EDITOR=nvim visudo
-```
-Uncomment the line that gives anyone in the wheel group sudo permission (with password)
-```
-%wheel ALL=(ALL:ALL) ALL
-```
-
-## Finish and reboot
+Then
 ```
 exit
 umount -R /mnt
 poweroff
 ```
-Unplug your usb and turn on your computer
-
-
-Special setup:
-
-## 165Hz on Dynamic graphics mode + amd freesync:
-place edid.bin at /usr/lib/firmware/edid/edid.bin
-
-/etc/mkinitcpio.conf
-```
-
-MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)
-
-BINARIES=()
-
-FILES=(/usr/lib/firmware/edid/edid.bin)
-
-HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems resume fsck)
-
-```
-Resume good for hibernate
-
-/etc/default/grub
-```
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=UUID=<insert-UUID>:cryptlvm root=/dev/mapper/arch-btrfs drm.edid_firmware=edid/edid.bin amdgpu.freesync_video=1"
-```
-make grub config
-```
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-## Ctr2caps
+to finish install
