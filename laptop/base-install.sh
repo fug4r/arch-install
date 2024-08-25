@@ -2,8 +2,13 @@
 
 
 # Installing packages
+echo "Enabling multilib repo..."
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+echo "Multilib repo enabled."
+
 echo "Installing packages..."
 pacman -S --needed $(grep -v '^#' packages.txt)
+echo "Packages installed."
 
 
 # General settings
@@ -101,7 +106,8 @@ systemctl enable tlp.service
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable logrotate.timer
-systemctl enable updatedb.timer
+systemctl enable plocate-updatedb.timer
+systemctl enable man-db.timer
 echo "Relevant systemd services enabled."
 
 
