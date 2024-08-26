@@ -1,0 +1,24 @@
+#################### EXTRA
+
+# Desktop (hyprland)
+hyprland
+egl-wayland
+xdg-desktop-portal-hyprland
+qt5-wayland
+qt6-wayland
+
+# All
+fish
+yazi
+sddm
+kitty
+dunst
+polkit-kde-agent
+
+# Desktop (qtile)
+xorg
+xdg-utils
+qtile
+rofi
+thunar
+picom

@@ -7,7 +7,7 @@ sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 echo "Multilib repo enabled."
 
 echo "Installing packages..."
-pacman -S --needed $(grep -v '^#' packages.txt)
+pacman -S --needed $(grep -v '^#' base-packages.txt)
 echo "Packages installed."
 
 
@@ -41,8 +41,6 @@ echo "FONT=ter-124b" >> /etc/vconsole.conf
 echo "Keymap and font set."
 
 echo -e "\nDisabling PC Speaker..."
-rmmod pcspkr
-rmmod snd_pcsp
 echo "blacklist pcspkr" >> /etc/modprobe.d/nobeep.conf
 echo "blacklist snd_pcsp" >> /etc/modprobe.d/nobeep.conf
 echo "Disabled PC Speaker..."
@@ -50,7 +48,8 @@ echo "Disabled PC Speaker..."
 
 # Initramfs & custom edid binary
 echo -e "\nConfiguring and generating initramfs..."
-mkdir -p /usr/lib/firmware/edid/ && cp ./edid.bin /usr/lib/firmware/edid/
+mkdir -p /usr/lib/firmware/edid/ && cp ./edid.bin /usr/lib/firmware/edid/edid.bin
+cp ./mkinitcpio.conf /etc/mkinitcpio.conf
 mkinitcpio -p linux
 echo "Initramfs set up."
 
@@ -60,12 +59,14 @@ echo -e "\nInstalling grub..."
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
 echo -e "\nSetting up grub config file..."
-echo "Assuming cryptdevice is /dev/mapper/arch-brfs and getting its UUID"
-cryptuuid=`blkid | grep arch-btrfs | cut -d'"' -f 2` 
+read -p "Enter last part of cryptdevice directory: " cryptdevice
+echo "Assuming cryptdevice is /dev/$cryptdevice and getting its UUID"
+cryptuuid=`blkid | grep $cryptdevice | cut -d'"' -f 2` 
 echo "UUID got: $cryptuuid"
 
 echo "Incorporating UUID in grub config file..."
 # Copying from default config to prevent its modification
+echo "Assuming root is /dev/mapper/arch-btrfs"
 cp ./grub.default ./grub
 sed -i -e "s/<>/$cryptuuid/g" grub
 echo "Grub settings finished."

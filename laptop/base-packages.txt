@@ -139,7 +139,6 @@ networkmanager
 rp-pppoe
 modemmanager
 wpa_supplicant
-iwd
 avahi
 nss-mdns
 openssh
@@ -188,18 +187,3 @@ gutenprint
 splix
 system-config-printer
 
-
-#################### EXTRA
-
-# Desktop (hyprland)
-hyprland
-egl-wayland
-kitty
-sddm
-dunst
-xdg-desktop-portal-hyprland
-polkit-kde-agent
-qt5-wayland
-qt6-wayland
-fish
-yazi
