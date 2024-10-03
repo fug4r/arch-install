@@ -29,6 +29,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 read -p "Enter hostname: " hostname
+echo $hostname >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
@@ -50,6 +51,7 @@ echo "Disabled PC Speaker..."
 echo -e "\nConfiguring and generating initramfs..."
 mkdir -p /usr/lib/firmware/edid/ && cp ./edid.bin /usr/lib/firmware/edid/edid.bin
 cp ./mkinitcpio.conf /etc/mkinitcpio.conf
+echo "options nvidia_drm modeset=1 fbdev=1" >> /etc/modprobe.d/nvidia.conf
 mkinitcpio -p linux
 echo "Initramfs set up."
 
@@ -73,9 +75,16 @@ echo "Grub settings finished."
 
 echo -e "\nMoving final grub file to /etc/default/grub and making grub config..."
 mv ./grub /etc/default/grub
+mv ./vimix /boot/grub/themes/vimix
 grub-mkconfig -o /boot/grub/grub.cfg
+sed -i "/echo/d" /boot/grub/grub.cfg
 echo "Grub setup finished."
 
+# Plymouth
+echo -e "\nSetting up plymouth themes..."
+cp -r linux-penguin/ /usr/share/plymouth/themes/
+plymouth-set-default-theme -R linux-penguin
+echo "Plymouth theme setup finished."
 
 # Adding admin user and setting root password
 echo -e "\nCreating admin user..."

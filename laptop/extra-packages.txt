@@ -1,24 +1,27 @@
 #################### EXTRA
 
-# Desktop (hyprland)
-hyprland
-egl-wayland
-xdg-desktop-portal-hyprland
-qt5-wayland
-qt6-wayland
+# Desktop (qtile)
+xorg-xserver
+xorg-xrandr
+xorg-setxkbmap
+xorg-xset
+xorg-xprop
+xdg-utils
+qtile
 
-# All
+qt6-svg
+qt6-declarative
+
+# Desktop software
+rofi
+thunar
+picom
 fish
 yazi
 sddm
 kitty
 dunst
+flameshot
 polkit-kde-agent
-
-# Desktop (qtile)
-xorg
-xdg-utils
-qtile
-rofi
-thunar
-picom
+qt6-multimedia-ffmpeg
+dolphin

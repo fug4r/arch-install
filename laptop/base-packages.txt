@@ -119,6 +119,7 @@ plocate
 gptfdisk
 xdg-user-dirs
 ffmpegthumbnailer
+plymouth
 gvfs
 gvfs-afc
 gvfs-gphoto2
