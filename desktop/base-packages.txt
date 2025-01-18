@@ -1,0 +1,190 @@
+#################### BASE
+
+# Base system
+base
+base-devel
+linux
+linux-firmware
+linux-firmware-marvell
+linux-headers
+archlinux-keyring
+cryptsetup
+device-mapper
+dmraid
+mdadm
+iptables-nft
+inetutils
+logrotate
+edk2-shell
+lsb-release
+which
+s-nail
+
+# Core utilities
+coreutils
+tar
+less
+findutils
+diffutils
+grep
+sed
+gawk
+util-linux
+procps-ng
+
+# Docs
+man-db
+man-pages
+texinfo
+tealdeer
+
+# Programming languages
+perl
+python
+python-packaging
+rustup
+
+# Filesystem
+btrfs-progs
+e2fsprogs
+exfatprogs
+reiserfsprogs
+xfsprogs
+dosfstools
+mtools
+ntfs-3g
+sysfsutils
+f2fs-tools
+jfsutils
+lvm2
+nfs-utils
+nilfs-utils
+
+
+## Boot
+grub
+efibootmgr
+efitools
+os-prober
+
+#################### HARDWARE
+
+# CPU
+amd-ucode
+
+# GPU
+mesa
+mesa-utils
+nvidia
+nvidia-utils
+lib32-nvidia-utils
+nvidia-settings
+
+# Disk/USB
+hdparm
+sdparm
+lsscsi
+sg3_utils
+smartmontools
+usbutils
+
+# Audio
+alsa-firmware
+alsa-plugins
+alsa-utils
+gst-libav
+gst-plugins-base
+gst-plugins-good
+gst-plugins-bad
+gst-plugins-ugly
+gst-plugin-pipewire
+libdvdcss
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+rtkit
+sof-firmware
+wireplumber
+
+#################### SOFTWARE
+
+# General
+git
+pacman-contrib
+pkgfile
+reflector
+wget
+curl
+plocate
+gptfdisk
+xdg-user-dirs
+ffmpegthumbnailer
+plymouth
+gvfs
+gvfs-afc
+gvfs-gphoto2
+gvfs-mtp
+gvfs-nfs
+gvfs-smb
+xz
+unzip
+zip
+unrar
+ntp
+acpi
+acpid
+tlp
+
+# Network
+networkmanager
+rp-pppoe
+modemmanager
+wpa_supplicant
+avahi
+nss-mdns
+openssh
+
+# Bluetooth
+bluez
+bluez-utils
+
+# Firewall
+firewalld
+python-pyqt5
+python-capng
+
+# Fonts
+terminus-font
+cantarell-fonts
+noto-fonts
+noto-fonts-emoji
+noto-fonts-cjk
+noto-fonts-extra
+ttf-dejavu
+ttf-liberation
+ttf-opensans
+ttf-nerd-fonts-symbols
+ttf-jetbrains-mono-nerd
+
+# Printer
+cups
+cups-browsed
+cups-filters
+cups-pdf
+hplip
+sane
+sane-airscan
+ipp-usb
+python-reportlab
+foomatic-db
+foomatic-db-engine
+foomatic-db-gutenprint-ppds
+foomatic-db-nonfree
+foomatic-db-nonfree-ppds
+foomatic-db-ppds
+ghostscript
+gsfonts
+gutenprint
+splix
+system-config-printer
+
