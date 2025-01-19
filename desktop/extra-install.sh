@@ -22,9 +22,6 @@ sudo cp ./sddm.conf /etc/sddm.conf
 #systemctl enable sddm.service
 #xdg-user-dirs-update
 
-# Xorg config
-sudo cp ./30-touchpad.conf /etc/X11/xorg.conf.d/30-touchpad.conf
-
 # Bluetooth config
 sudo cp ./51-blueman.rules /etc/polkit-1/rules.d/51-blueman.rules
 
